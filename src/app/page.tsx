@@ -1,65 +1,151 @@
-import Image from "next/image";
+import FadeIn from "@/components/FadeIn";
+import DynamicYear from "@/components/DynamicYear";
+
+const products = [
+  {
+    name: "Goodbite",
+    description: "A food scoring platform for Indian packaged food products.",
+    href: "https://goodbite.in",
+    linkText: "Visit goodbite.in",
+    accent: "goodbite" as const,
+  },
+  {
+    name: "living.so",
+    description: "AI-powered personal home page builder for creators.",
+    href: "https://living.so",
+    linkText: "Visit living.so",
+    accent: "living" as const,
+  },
+];
+
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <p className="font-mono text-xs tracking-[0.3em] uppercase text-muted mb-10">
+      // {children}
+    </p>
+  );
+}
+
+function ProductCard({
+  name,
+  description,
+  href,
+  linkText,
+  accent,
+}: (typeof products)[number]) {
+  return (
+    <div
+      className={`card-${accent} bg-surface p-8 transition-all duration-500 group`}
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <span
+          className={`block w-2 h-2 rounded-full ${
+            accent === "goodbite" ? "bg-goodbite" : "bg-living"
+          }`}
+        />
+        <h3 className="font-mono text-xl tracking-wide">{name}</h3>
+      </div>
+      <p className="font-sans text-muted leading-relaxed mb-6">{description}</p>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`link-underline inline-flex items-center gap-2 font-mono text-sm ${
+          accent === "goodbite" ? "text-goodbite" : "text-living"
+        } transition-opacity hover:opacity-80`}
+      >
+        {linkText}
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          &rarr;
+        </span>
+      </a>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen">
+      {/* ── Hero ──────────────────────────────── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-6">
+        <div className="dot-grid" aria-hidden="true" />
+        <div className="relative z-10 text-center">
+          <h1 className="hero-title font-mono text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight">
+            ANEPICTALE
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-title font-mono text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] text-muted mt-2 uppercase">
+            Labs
+          </p>
+          <p className="hero-subtitle font-sans text-lg sm:text-xl text-muted mt-8 max-w-md mx-auto leading-relaxed">
+            Building products that make everyday life smarter.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <div className="w-px h-12 bg-border opacity-50" />
         </div>
-      </main>
-    </div>
+      </section>
+
+      <hr className="divider mx-6 sm:mx-12 lg:mx-24" />
+
+      {/* ── Products ──────────────────────────── */}
+      <section className="px-6 sm:px-12 lg:px-24 py-24 max-w-5xl mx-auto">
+        <FadeIn>
+          <SectionLabel>Products</SectionLabel>
+        </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {products.map((product, i) => (
+            <FadeIn key={product.name} delay={i * 150}>
+              <ProductCard {...product} />
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      <hr className="divider mx-6 sm:mx-12 lg:mx-24" />
+
+      {/* ── About ─────────────────────────────── */}
+      <section className="px-6 sm:px-12 lg:px-24 py-24 max-w-5xl mx-auto">
+        <FadeIn>
+          <SectionLabel>About</SectionLabel>
+        </FadeIn>
+        <FadeIn delay={100}>
+          <div className="border-l-2 border-border pl-6 max-w-2xl">
+            <p className="font-sans text-lg text-muted leading-relaxed">
+              Anepictale Labs is a technology company building products at the
+              intersection of data, AI, and everyday life. Based in Gurgaon,
+              India.
+            </p>
+          </div>
+        </FadeIn>
+      </section>
+
+      <hr className="divider mx-6 sm:mx-12 lg:mx-24" />
+
+      {/* ── Footer ────────────────────────────── */}
+      <footer className="px-6 sm:px-12 lg:px-24 py-16 max-w-5xl mx-auto">
+        <FadeIn>
+          <div className="space-y-3 font-mono text-xs text-muted leading-relaxed">
+            <p>
+              <span className="text-border mr-2">//</span>
+              hello@anepictale.com
+            </p>
+            <p>
+              <span className="text-border mr-2">//</span>
+              CIN: U62099HR2024PTC120917
+            </p>
+            <p>
+              <span className="text-border mr-2">//</span>
+              WeWork Two Horizon Center, Golf Course Road, DLF-5, Gurugram
+              &mdash; 122002, Haryana
+            </p>
+            <div className="pt-8">
+              <p className="text-border">
+                &copy; <DynamicYear /> Anepictale Labs Private Limited
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </footer>
+    </main>
   );
 }
