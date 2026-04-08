@@ -5,6 +5,7 @@ import { Marquee } from "@/components/ui/marquee";
 import { Particles } from "@/components/ui/particles";
 import { WordRotate } from "@/components/ui/word-rotate";
 import DynamicYear from "@/components/DynamicYear";
+import Image from "next/image";
 
 /* ── Data ──────────────────────────────────────── */
 
@@ -170,25 +171,36 @@ export default function Home() {
         />
 
         <div className="relative z-10 text-center max-w-3xl">
-          <BlurFade delay={0.1} inView>
+          <BlurFade delay={0.05} inView>
+            <Image
+              src="/logo.svg"
+              alt="Anepictale Labs logo"
+              width={56}
+              height={56}
+              className="mx-auto mb-8"
+              priority
+            />
+          </BlurFade>
+
+          <BlurFade delay={0.15} inView>
             <p className="font-mono text-xs tracking-[0.4em] uppercase text-muted mb-6">
               A technology company
             </p>
           </BlurFade>
 
-          <BlurFade delay={0.2} inView>
+          <BlurFade delay={0.25} inView>
             <h1 className="font-mono text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-none">
               ANEPICTALE
             </h1>
           </BlurFade>
 
-          <BlurFade delay={0.35} inView>
+          <BlurFade delay={0.4} inView>
             <p className="font-mono text-2xl sm:text-3xl md:text-4xl tracking-[0.35em] text-muted mt-2 uppercase">
               Labs
             </p>
           </BlurFade>
 
-          <BlurFade delay={0.5} inView>
+          <BlurFade delay={0.55} inView>
             <div className="mt-10 flex items-center justify-center gap-2 font-sans text-lg sm:text-xl text-muted">
               <span>Building products that make</span>
               <WordRotate
@@ -305,9 +317,17 @@ export default function Home() {
         <BlurFade delay={0.1} inView>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div>
-              <p className="font-mono text-sm tracking-wide mb-4">
-                Anepictale Labs
-              </p>
+              <div className="flex items-center gap-3 mb-4">
+                <Image
+                  src="/logo.svg"
+                  alt="Anepictale Labs logo"
+                  width={24}
+                  height={24}
+                />
+                <p className="font-mono text-sm tracking-wide">
+                  Anepictale Labs
+                </p>
+              </div>
               <p className="font-sans text-muted text-sm leading-relaxed max-w-xs">
                 Building products that make everyday life smarter.
               </p>

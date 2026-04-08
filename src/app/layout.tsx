@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   title: "Anepictale Labs — Building products that make everyday life smarter",
   description:
     "Anepictale Labs is a technology company building Goodbite and living.so — products at the intersection of data, AI, and everyday life.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     title:
       "Anepictale Labs — Building products that make everyday life smarter",
